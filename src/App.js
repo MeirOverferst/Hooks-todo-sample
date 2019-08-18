@@ -1,22 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 
-function Todo({ todo, index, completeTodo, removeTodo }) {
-  return (
-    <div
-      className="todo"
-      style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
-    >
-      {todo.text}
-
-      <div className="buttonDiv">
-        <button className="btn" onClick={() => completeTodo(index)}>Complete</button>
-        <button className="btn" onClick={() => removeTodo(index)}>x</button>
-      </div>
-    </div>
-  );
-}
-
 function TodoForm({ addTodo }) {
   const [value, setValue] = useState("");
 
@@ -29,29 +13,37 @@ function TodoForm({ addTodo }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        className="input"
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        placeholder= "   Write here..."
-      />
+      <input type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder= "   Write here..."/>
     </form>
   );
 }
 
+function Todo({ todo, index, completeTodo, removeTodo }) {
+  return (
+    <div className="todo" style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}>
+      {todo.text}
+      <div className="buttonDiv">
+        <button className="btn" onClick={() => completeTodo(index)}>Complete</button>
+        <button className="btn" onClick={() => removeTodo(index)}>x</button>
+      </div>
+    </div>
+  );
+}
+
+
+
 function App() {
   const [todos, setTodos] = useState([
     {
-      text: "Learn about React",
+      text: "Do stuff",
       isCompleted: false
     },
     {
-      text: "Meet friend for lunch",
+      text: "Do more stuff",
       isCompleted: false
     },
     {
-      text: "Build really cool todo app",
+      text: "Do more more stuff",
       isCompleted: false
     }
   ]);
